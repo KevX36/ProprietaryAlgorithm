@@ -59,14 +59,26 @@ public class MeshGenerator : MonoBehaviour
                         {
                             buildings.Add(newBuilding);
                         }
-                        else if (true)
-                        {
-
-                        }
                         else
                         {
-                            Destroy(newBuilding);
+                            bool doesNotOverlap = true;
+                            for(int j =0;j > buildings.Count; j++)
+                            {
+                                if (false)
+                                {
+                                    doesNotOverlap = false;
+                                }
+                            }
+                            if (doesNotOverlap)
+                            {
+                                buildings.Add(newBuilding);
+                            }
+                            else
+                            {
+                                Destroy(newBuilding);
+                            }
                         }
+                        
                     }
                 }
 

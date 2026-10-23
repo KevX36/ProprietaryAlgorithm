@@ -521,12 +521,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346a45c1880de8a4f939b5fda793b690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeshGenerator
-  Buildings: []
+  buildings: []
   xSize: 50
   zSize: 50
-  buildingSpawnRate: 0
+  buildingSpawnRate: 10
   buildingSideRange: 3
-  buildingHightRange: 6
+  buildingHightRange: 3
   buildingPrefab: {fileID: 3536769340688409097, guid: 50a601bdc172f27469a71502a6ed6348, type: 3}
 --- !u!4 &1198935907
 Transform:
