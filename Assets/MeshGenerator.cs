@@ -64,14 +64,14 @@ public class MeshGenerator : MonoBehaviour
                             bool XOverlap = false;
                             bool ZOverlap = false;
                             //checks for overlap with a bit of extra space
-                            if (newBuilding.transform.right.x + newBuilding.transform.position.x <= buildings[j].transform.right.x + buildings[j].transform.position.x && newBuilding.transform.right.x + newBuilding.transform.position.x >= -buildings[j].transform.right.x+buildings[j].transform.position.x)
+                            if (newBuilding.transform.right.x + newBuilding.transform.position.x <= buildings[j].transform.right.x + buildings[j].transform.position.x + 1 && newBuilding.transform.right.x + newBuilding.transform.position.x >= -buildings[j].transform.right.x+buildings[j].transform.position.x - 1)
                             {
                                 Debug.Log("failed x check");
                                 
                                 XOverlap = true;
 
                             }
-                            else if (-newBuilding.transform.right.x + newBuilding.transform.position.x <= buildings[j].transform.right.x + buildings[j].transform.position.x && -newBuilding.transform.right.x + newBuilding.transform.position.x >= -buildings[j].transform.right.x + buildings[j].transform.position.x)
+                            else if (-newBuilding.transform.right.x + newBuilding.transform.position.x <= buildings[j].transform.right.x + buildings[j].transform.position.x + 1 && -newBuilding.transform.right.x + newBuilding.transform.position.x >= -buildings[j].transform.right.x + buildings[j].transform.position.x - 1)
                             {
                                 Debug.Log("failed x check");
                                 XOverlap = true;
@@ -82,13 +82,13 @@ public class MeshGenerator : MonoBehaviour
                                 Debug.Log("passed x check");
                             }
                             
-                            if (newBuilding.transform.forward.z+newBuilding.transform.position.z <= buildings[j].transform.forward.z + buildings[j].transform.position.z && newBuilding.transform.forward.z + newBuilding.transform.position.z >= -buildings[j].transform.forward.z+buildings[j].transform.position.z)
+                            if (newBuilding.transform.forward.z+newBuilding.transform.position.z <= buildings[j].transform.forward.z + buildings[j].transform.position.z + 1 && newBuilding.transform.forward.z + newBuilding.transform.position.z >= -buildings[j].transform.forward.z+buildings[j].transform.position.z - 1)
                             {
                                 Debug.Log("failed z check");
                                 ZOverlap = true;
 
                             }
-                            else if (-newBuilding.transform.forward.z + newBuilding.transform.position.z <= buildings[j].transform.forward.z + buildings[j].transform.position.z && -newBuilding.transform.forward.z + newBuilding.transform.position.z >= -buildings[j].transform.forward.z + buildings[j].transform.position.z)
+                            else if (-newBuilding.transform.forward.z + newBuilding.transform.position.z <= buildings[j].transform.forward.z + buildings[j].transform.position.z + 1 && -newBuilding.transform.forward.z + newBuilding.transform.position.z >= -buildings[j].transform.forward.z + buildings[j].transform.position.z - 1)
                             {
                                 Debug.Log("failed z check");
                                 ZOverlap = true;
