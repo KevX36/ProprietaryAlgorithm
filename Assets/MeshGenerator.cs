@@ -8,6 +8,8 @@ public class MeshGenerator : MonoBehaviour
     Vector3[] vertices;
     int[] triangles;
 
+    public GameObject[]Buildings;
+
     void Start()
     {
         mesh = new Mesh();
@@ -24,35 +26,31 @@ public class MeshGenerator : MonoBehaviour
     }
     public int xSize = 20;
     public int zSize = 20;
-    public int ySize = 5;
+    public System.Random RNG = new System.Random();
+    public int buildingSpawnRate = 10;
+    public int buildingSideRange = 3;
+    public int buildingHightRange = 3;
 
+    public GameObject buildingPrefab;
     public void GenerateCity()
     {
-        vertices = new Vector3[(xSize + 1) * (zSize +1)*(ySize+1)];
+        vertices = new Vector3[(xSize + 1) * (zSize +1)];
         
-        for(int y = 0; y <= ySize; y++)
-        {
-            for (int i = 0, z = 0; z <= zSize; z++)
-            {
-                for (int x = 0; x <= xSize; x++)
-                {
-                    vertices[i] = new Vector3(x, y, z);
-
-
-
-
-
-                    i++;
-                }
-            }
-        }
         for (int i = 0, z = 0; z <= zSize; z++)
         {
             for (int x = 0; x <= xSize; x++)
             {
                 vertices[i] = new Vector3(x, 0, z);
 
-
+                if(x > 0 && z > 0 && x < xSize && z < zSize)
+                {
+                    int makeBuilding = RNG.Next(0, 100);
+                    if(makeBuilding <= buildingSpawnRate)
+                    {
+                        GameObject newBuilding = Instantiate(buildingPrefab);
+                        newBuilding.transform.position = vertices[i];
+                    }
+                }
 
 
 
@@ -60,6 +58,7 @@ public class MeshGenerator : MonoBehaviour
             }
         }
         triangles = new int[xSize*zSize*6];
+
         for (int j = 0, vert = 0, tris = 0; j<zSize; j++)
         {
             for (int i = 0; i < xSize; i++)
