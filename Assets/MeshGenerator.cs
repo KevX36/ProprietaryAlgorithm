@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MeshGenerator : MonoBehaviour
@@ -8,7 +10,7 @@ public class MeshGenerator : MonoBehaviour
     Vector3[] vertices;
     int[] triangles;
 
-    public GameObject[]Buildings;
+    public List<GameObject> buildings = new List<GameObject>();
 
     void Start()
     {
@@ -48,7 +50,23 @@ public class MeshGenerator : MonoBehaviour
                     if(makeBuilding <= buildingSpawnRate)
                     {
                         GameObject newBuilding = Instantiate(buildingPrefab);
-                        newBuilding.transform.position = vertices[i];
+                        int xScale = RNG.Next(0, buildingSideRange) + 1;
+                        int yScale = RNG.Next(0, buildingHightRange) + 1;
+                        int zScale = RNG.Next(0, buildingSideRange) + 1;
+                        newBuilding.transform.localScale = new Vector3(xScale, yScale, zScale);
+                        newBuilding.transform.position = new Vector3(vertices[i].x,yScale/2, vertices[i].z);
+                        if(buildings == null)
+                        {
+                            buildings.Add(newBuilding);
+                        }
+                        else if (true)
+                        {
+
+                        }
+                        else
+                        {
+                            Destroy(newBuilding);
+                        }
                     }
                 }
 
