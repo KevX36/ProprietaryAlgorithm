@@ -44,6 +44,7 @@ public class MeshGenerator : MonoBehaviour
     public int buildingHightRange = 3;
 
     public GameObject buildingPrefab;
+    
     public void GenerateCity()
     {
         vertices = new Vector3[(xSize + 1) * (zSize +1)];
@@ -54,7 +55,7 @@ public class MeshGenerator : MonoBehaviour
             {
                 vertices[i] = new Vector3(x, 0, z);
 
-                if(x > 0 && z > 0 && x < xSize && z < zSize)
+                if(x > 1 && z > 1 && x < xSize-1 && z < zSize-1)
                 {
                     int makeBuilding = RNG.Next(0, 150);
                     if(makeBuilding <= buildingSpawnRate)
@@ -117,8 +118,13 @@ public class MeshGenerator : MonoBehaviour
 
                         if (DoesNotOverlap)
                         {
+                            
                             buildings.Add(newBuilding);
                             Debug.Log("added building");
+                            
+                            
+                            
+
                         }
                         else
                         {

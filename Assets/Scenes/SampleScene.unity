@@ -285,7 +285,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.24787425, y: -0, z: -0, w: 0.96879226}
-  m_LocalPosition: {x: 23.21, y: 12.23, z: -3.35}
+  m_LocalPosition: {x: 23.21, y: 23.5, z: -17.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -740,6 +740,7 @@ MonoBehaviour:
   buildingSideRange: 3
   buildingHightRange: 5
   buildingPrefab: {fileID: 3536769340688409097, guid: 50a601bdc172f27469a71502a6ed6348, type: 3}
+  roadPrefab: {fileID: 4321299736722132291, guid: 7299a44905ef54343b8c647ee92a6eff, type: 3}
 --- !u!4 &1198935907
 Transform:
   m_ObjectHideFlags: 0
