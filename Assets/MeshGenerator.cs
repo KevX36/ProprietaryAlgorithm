@@ -46,12 +46,12 @@ public class MeshGenerator : MonoBehaviour
 
                 if(x > 0 && z > 0 && x < xSize && z < zSize)
                 {
-                    int makeBuilding = RNG.Next(0, 100);
+                    int makeBuilding = RNG.Next(0, 150);
                     if(makeBuilding <= buildingSpawnRate)
                     {
                         GameObject newBuilding = Instantiate(buildingPrefab);
                         int xScale = RNG.Next(0, buildingSideRange) + 1;
-                        int yScale = RNG.Next(0, buildingHightRange) + 1;
+                        float yScale = RNG.Next(0, buildingHightRange) + 1;
                         int zScale = RNG.Next(0, buildingSideRange) + 1;
                         newBuilding.transform.localScale = new Vector3(xScale, yScale, zScale);
                         newBuilding.transform.position = new Vector3(vertices[i].x,yScale/2, vertices[i].z);
