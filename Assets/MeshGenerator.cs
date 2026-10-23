@@ -20,7 +20,17 @@ public class MeshGenerator : MonoBehaviour
         GenerateCity();
         UpdateMesh();
     }
-
+    public void RemakeCity()
+    {
+        for(int i = buildings.Count-1; i >= 0; i--)
+        {
+            GameObject gameObjectToDestory = buildings[i];
+            buildings.Remove(buildings[i]);
+            Destroy(gameObjectToDestory);
+        }
+        GenerateCity();
+        UpdateMesh();
+    }
     
     void Update()
     {
