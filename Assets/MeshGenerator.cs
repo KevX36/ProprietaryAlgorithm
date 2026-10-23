@@ -55,30 +55,67 @@ public class MeshGenerator : MonoBehaviour
                         int zScale = RNG.Next(0, buildingSideRange) + 1;
                         newBuilding.transform.localScale = new Vector3(xScale, yScale, zScale);
                         newBuilding.transform.position = new Vector3(vertices[i].x,yScale/2, vertices[i].z);
-                        if(buildings == null)
+                        bool DoesNotOverlap = true;
+                        
+                        for (int j = 0; j < buildings.Count; j++)
                         {
-                            buildings.Add(newBuilding);
-                        }
-                        else
-                        {
-                            bool doesNotOverlap = true;
-                            for(int j =0;j > buildings.Count; j++)
+                            Debug.Log($" new back{-newBuilding.transform.forward.z + newBuilding.transform.position.z} new front {newBuilding.transform.forward.z + newBuilding.transform.position.z} buildings i back {-buildings[j].transform.forward.z + buildings[j].transform.position.z} buildings i right {buildings[j].transform.forward.z + buildings[j].transform.position.z}");
+                            Debug.Log($" new left{-newBuilding.transform.right.x + newBuilding.transform.position.x} new right {newBuilding.transform.right.x + newBuilding.transform.position.x} buildings i left {-buildings[j].transform.right.x + buildings[j].transform.position.x} buildings i right {buildings[j].transform.right.x + buildings[j].transform.position.x}");
+                            bool XOverlap = false;
+                            bool ZOverlap = false;
+                            //checks for overlap with a bit of extra space
+                            if (newBuilding.transform.right.x + newBuilding.transform.position.x <= buildings[j].transform.right.x + buildings[j].transform.position.x && newBuilding.transform.right.x + newBuilding.transform.position.x >= -buildings[j].transform.right.x+buildings[j].transform.position.x)
                             {
-                                if (false)
-                                {
-                                    doesNotOverlap = false;
-                                }
+                                Debug.Log("failed x check");
+                                
+                                XOverlap = true;
+
                             }
-                            if (doesNotOverlap)
+                            else if (-newBuilding.transform.right.x + newBuilding.transform.position.x <= buildings[j].transform.right.x + buildings[j].transform.position.x && -newBuilding.transform.right.x + newBuilding.transform.position.x >= -buildings[j].transform.right.x + buildings[j].transform.position.x)
                             {
-                                buildings.Add(newBuilding);
+                                Debug.Log("failed x check");
+                                XOverlap = true;
                             }
                             else
                             {
-                                Destroy(newBuilding);
+                                
+                                Debug.Log("passed x check");
+                            }
+                            
+                            if (newBuilding.transform.forward.z+newBuilding.transform.position.z <= buildings[j].transform.forward.z + buildings[j].transform.position.z && newBuilding.transform.forward.z + newBuilding.transform.position.z >= -buildings[j].transform.forward.z+buildings[j].transform.position.z)
+                            {
+                                Debug.Log("failed z check");
+                                ZOverlap = true;
+
+                            }
+                            else if (-newBuilding.transform.forward.z + newBuilding.transform.position.z <= buildings[j].transform.forward.z + buildings[j].transform.position.z && -newBuilding.transform.forward.z + newBuilding.transform.position.z >= -buildings[j].transform.forward.z + buildings[j].transform.position.z)
+                            {
+                                Debug.Log("failed z check");
+                                ZOverlap = true;
+                            }
+                            else
+                            {
+                                
+                                Debug.Log("passed z check");
+                            }
+                            if (XOverlap && ZOverlap)
+                            {
+                                DoesNotOverlap = false;
+
                             }
                         }
-                        
+
+                        if (DoesNotOverlap)
+                        {
+                            buildings.Add(newBuilding);
+                            Debug.Log("added building");
+                        }
+                        else
+                        {
+                            Destroy(newBuilding.gameObject);
+                            Debug.Log("removed building");
+                        }
+
                     }
                 }
 
